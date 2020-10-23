@@ -18,6 +18,7 @@ import com.brightcove.cast.model.SplashScreen;
 import com.brightcove.cast.util.BrightcoveChannelUtil;
 import com.brightcove.player.edge.Catalog;
 import com.brightcove.player.edge.PlaylistListener;
+import com.brightcove.player.edge.VideoListener;
 import com.brightcove.player.event.EventEmitter;
 import com.brightcove.player.event.EventEmitterImpl;
 import com.brightcove.player.model.Playlist;
@@ -25,6 +26,8 @@ import com.brightcove.player.model.Video;
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
 import com.google.android.gms.cast.framework.Session;
+
+import java.util.Collections;
 
 import static com.brightcove.player.samples.cast.basic.Constants.INTENT_EXTRA_AD_CONFIG_ID;
 import static com.brightcove.player.samples.cast.basic.Constants.INTENT_EXTRA_VIDEO_ID;
@@ -48,10 +51,16 @@ public class MainActivity extends AppCompatActivity implements VideoListAdapter.
         Catalog catalog = new Catalog.Builder(eventEmitter, getString(R.string.accountId))
                 .setPolicy(getString(R.string.policyKey))
                 .build();
-        catalog.findPlaylistByReferenceID(getString(R.string.playlistReferenceId), new PlaylistListener() {
+//        catalog.findPlaylistByReferenceID(getString(R.string.playlistReferenceId), new PlaylistListener() {
+//            @Override
+//            public void onPlaylist(Playlist playlist) {
+//                videoListAdapter.setVideoList(playlist.getVideos());
+//            }
+//        });
+        catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
             @Override
-            public void onPlaylist(Playlist playlist) {
-                videoListAdapter.setVideoList(playlist.getVideos());
+            public void onVideo(Video video) {
+                videoListAdapter.setVideoList(Collections.singletonList(video));
             }
         });
 

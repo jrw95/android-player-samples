@@ -7,13 +7,16 @@
     <string name="media_route_menu_title">Play on&#8230;</string>
 
     <!-- A sample Brightcove Edge Account ID -->
-    <string name="accountId">5420904993001</string>
+<!--    <string name="accountId">5420904993001</string>-->
+    <string name="accountId">6085069390001</string>
 
     <!-- A sample Brightcove Edge Policy Key -->
-    <string name="policyKey">BCpkADawqM1Ui0_Pf1vky51aMs6LC42kmrxlpeAVxFf1bXtDKneGKJiJQoQklpT4D3aKBBoG7ryONbKKQsxErIVqaXz35LbfeL_UAYIjKqxw8q3jgh8P9j47pMWvrQJON-4P1hC2LfFmuGA_</string>
+<!--    <string name="policyKey">BCpkADawqM1Ui0_Pf1vky51aMs6LC42kmrxlpeAVxFf1bXtDKneGKJiJQoQklpT4D3aKBBoG7ryONbKKQsxErIVqaXz35LbfeL_UAYIjKqxw8q3jgh8P9j47pMWvrQJON-4P1hC2LfFmuGA_</string>-->
+    <string name="policyKey">BCpkADawqM0v7U9aflUFDmxkVjt1Rs6sNR5w0ixBXanfaOG4lkoBMlRCqim4ZWf3rO8uyd-E6ARQ6dCvBsDc-0_wlS6DmIBQqw3yo0B77RlDXTV3dRuUCObzUirsXdyhGcyQ-Blz4RI0AEu4</string>
 
     <!-- A sample Brightcove Playlist Reference ID -->
-    <string name="playlistReferenceId">android_sdk_demo_playlist</string>
+<!--    <string name="playlistReferenceId">android_sdk_demo_playlist</string>-->
+    <string name="videoId">6093123338001</string>
 
     <string name="video_title">Video Title</string>
     <string name="video_thumbnail">Video Thumbnail</string>
