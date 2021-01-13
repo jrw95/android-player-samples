@@ -3,14 +3,64 @@
 
     <!-- Application name -->
     <string name="app_name">Ad Rules IMA Sample App</string>
+    <string name="button_load_player">Load Player</string>
+
+    <string name="clear_dash">Clear DASH</string>
+    <string name="drm_dash">DRM DASH</string>
+    <string name="hlse">HLSe</string>
+
+    <string-array name="content_types">
+        <item>@string/clear_dash</item>
+        <item>@string/drm_dash</item>
+        <item>@string/hlse</item>
+    </string-array>
+
+    <string name="use_hls_if_available">Use HLS Sources if available</string>
 
     <!-- A sample Brightcove Edge Account ID -->
-    <string name="account">3636334163001</string>
+<!--    <string name="account">3636334163001</string>-->
 
     <!-- A sample Brightcove Edge Policy Key -->
-    <string name="policy">BCpkADawqM1W-vUOMe6RSA3pA6Vw-VWUNn5rL0lzQabvrI63-VjS93gVUugDlmBpHIxP16X8TSe5LSKM415UHeMBmxl7pqcwVY_AZ4yKFwIpZPvXE34TpXEYYcmulxJQAOvHbv2dpfq-S_cm</string>
+<!--    <string name="policy">BCpkADawqM1W-vUOMe6RSA3pA6Vw-VWUNn5rL0lzQabvrI63-VjS93gVUugDlmBpHIxP16X8TSe5LSKM415UHeMBmxl7pqcwVY_AZ4yKFwIpZPvXE34TpXEYYcmulxJQAOvHbv2dpfq-S_cm</string>-->
 
     <!-- A sample Brightcove Video ID -->
-    <string name="videoId">3931042146001</string>
+<!--    <string name="videoId">3931042146001</string>-->
+
+<!--  AppSci Bolt Clear  -->
+    <!-- A sample Brightcove Edge Account ID -->
+<!--    <string name="boltClearAccount">4800266849001</string>-->
+
+    <!-- A sample Brightcove Edge Policy Key -->
+<!--    <string name="boltClearPolicyKey">BCpkADawqM3n0ImwKortQqSZCgJMcyVbb8lJVwt0z16UD0a_h8MpEYcHyKbM8CGOPxBRp0nfSVdfokXBrUu3Sso7Nujv3dnLo0JxC_lNXCl88O7NJ0PR0z2AprnJ_Lwnq7nTcy1GBUrQPr5e</string>-->
+
+    <!-- A sample Brightcove Video ID (Brave Trailer) -->
+<!--    <string name="boltClearVideoId">6145226829001</string>-->
+
+    <!--  Bolt Clear test account  -->
+    <string name="boltClearAccount">4800266849001</string>
+
+    <!-- A sample Brightcove Edge Policy Key -->
+    <string name="boltClearPolicyKey">BCpkADawqM3n0ImwKortQqSZCgJMcyVbb8lJVwt0z16UD0a_h8MpEYcHyKbM8CGOPxBRp0nfSVdfokXBrUu3Sso7Nujv3dnLo0JxC_lNXCl88O7NJ0PR0z2AprnJ_Lwnq7nTcy1GBUrQPr5e</string>
+
+    <!-- A sample Brightcove Video ID -->
+    <string name="boltClearVideoId">5853514818001</string>
+
+    <!-- Bolt DRM Account ID -->
+    <string name="boltDrmAccount">3636334164001</string>
+
+    <!-- Bolt DRM Policy Key -->
+    <string name="boltDrmPolicyKey">BCpkADawqM04pilWqSIDfTmwPNiBscekcQB9wQ3IiTUZ4baBIx6LyLTrACuS0KJPOlpeEui10NOSgQ8zPTk8iSRPkQXSCGBrEqJD_4vJtX31zRvnk-4Wq8svz8j6abVYnqTijMliCf_1lIoa</string>
+
+    <!-- Bolt DRM Video ID -->
+    <string name="boltDrmVideoId">5146345583001</string>
+
+    <!-- Bolt HLSe Account ID -->
+    <string name="boltHlseAccount">5507778763001</string>
+
+    <!-- Bolt HLSe Policy Key -->
+    <string name="boltHlsePolicyKey">BCpkADawqM3x4z3N6F-N-DHPxPnX_-0L-Tl7CiC-Oat8l7UzSX3dmJcKczaw_LZuWF5pZtr9rnD0u_hD57yLYP0i90DzhfPozmrBHTsAHoQfcK6yxwTgXdrEUCUnl9a7NJrZgL8PNCd9jswz</string>
+
+    <!-- Bolt HLSe Video ID (Expanse S01 E01)-->
+    <string name="boltHlseVideoId">6221340413001</string>
 
 </resources>
