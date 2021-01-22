@@ -1,4 +1,4 @@
-package com.brightcove.player.samples.ima.exoplayer.adrules;
+package com.brightcove.player.samples.ima.adrules;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +13,7 @@ import com.brightcove.player.display.ExoPlayerVideoDisplayComponent;
 import com.brightcove.player.edge.Catalog;
 import com.brightcove.player.edge.CatalogError;
 import com.brightcove.player.edge.VideoListener;
+import com.brightcove.player.event.Event;
 import com.brightcove.player.event.EventEmitter;
 import com.brightcove.player.event.EventType;
 import com.brightcove.player.mediacontroller.BrightcoveMediaController;
@@ -63,8 +64,11 @@ public class MainActivity extends BrightcovePlayer {
     private final String otherJwt = "";
     private final String hlseJwt = "ewoJInR5cGUiOiAiSldUIiwKCSJhbGciOiAiUlMyNTYiCn0.ewogICJwa2lkIjogIjRlMDRmMzliLTdiZGMtNGFkZi1hMzA4LWUzOTQ2MDQyZjcwOSIsCiAgInByaWQiOiAiIiwKICAiYWNjaWQiOiAiNTUwNzc3ODc2MzAwMSIsCiAgInVpZCI6ICJhbmRyb2lkLXNkayIsCiAgImlhdCI6IDE2MDkyNzIyMDYsCiAgImV4cCI6IDE2MTE4NjQyMDYsCiAgIm5iZiI6IDE2MDkyNzIyMDYKfQ.OEp1P3MZVU79MNjTXsqnQUIsjzuNrxNkUT06ODGPw42JW4F-I01ScsdSZ8kMO11sM94-PVogl62iQU5L8ciX5GF3xN5E3Xsc3gOeC6QOj5tiNy4QSm37VMjDmvfr-a6s8vFtZeAYavenuJcDhQu8aaoo693cCTSJ7E-D3qvJ7E4z8x-xvCqDwcjAM64v7iIyyc9UOEve8QLflAC-KMcsRMy6kb98PD0z15ZsKQ3Y9aWowPKxDzhRmFpwHvV_qUE3U-_0BkTYSUowXjTc8vnEGUod6trDyvfSD7jlZ74rh1X06VwQ2t_ZZ5dxuNjr9rrh_PsbhYYJKGGw4l813ZXzlQ";
 
-    // ad tag URL with timestamp replacement for the correlator
+    // 28 Dec test ad tag URL 1.1.1 - with timestamp replacement for the correlator
     private String adRulesURL = "https://pubads.g.doubleclick.net/gampad/ads?sz=300x250|320x180|400x300|480x270|640x360|640x480|854x480|960x540|1280x720|1920x1080|1920x1280&iu=/210325652/AD_Test/KOCOWABCAPP001&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&url=https://www.kocowa.com/auto/channel/13614149&description_url=https://www.kocowa.com/auto/channel/13614149&correlator=" + CORRELATOR_KEY + "&ad_rule=1&cmsid=2532769&vid=6171350716001";
+
+    // Plato ad tag - 3x Skippable preroll, 3x Skippable midroll, 3x Skippable postroll
+//    private String adRulesURL = "http://appsci.vidmark.local:9090/formats/IMA3/combined/pre-mid-post-multiple-skippable-ads.handlebars";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,15 +139,27 @@ public class MainActivity extends BrightcovePlayer {
             }
         });
 
-        eventEmitter.on(EventType.VIDEO_DURATION_CHANGED, event -> {
-            Log.v(TAG, event.getProperties().toString());
-            contentPlayer = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay()).getExoPlayer();
-            if (contentPlayer != null) {
-                currentContentPlayheadPosition = contentPlayer.getContentPosition();
-                previousContentPlayheadPosition = currentContentPlayheadPosition;
+        eventEmitter.on(EventType.AD_BREAK_COMPLETED, event -> {
+            Video video = (Video) event.getProperty(Event.VIDEO);
+            int playheadPosition = event.getIntegerProperty(Event.PLAYHEAD_POSITION);
+            Log.v(TAG, "didSeekTo playheadPosition: " + playheadPosition);
+            // If we seek to within a second of the end of the video, or back to 0
+            if (playheadPosition == 0 || (playheadPosition > (video.getDuration() - 1000))) {
+                // Seek a few ms into the video, to allow playback to start
+                brightcoveVideoView.seekTo(50);
             }
         });
 
+        eventEmitter.on(EventType.DID_SEEK_TO, event -> {
+            Video video = (Video) event.getProperty(Event.VIDEO);
+            int playheadPosition = event.getIntegerProperty(Event.PLAYHEAD_POSITION);
+            Log.v(TAG, "didSeekTo playheadPosition: " + playheadPosition);
+            // If we seek to within a second of the end of the video, or back to 0
+            if (playheadPosition == 0 || (playheadPosition > (video.getDuration() - 1000))) {
+                // Seek a few ms into the video, to allow playback to start
+                brightcoveVideoView.seekTo(50);
+            }
+        });
     }
 
     /**
@@ -156,24 +172,11 @@ public class MainActivity extends BrightcovePlayer {
         // Enable logging up ad start.
         eventEmitter.on(EventType.AD_STARTED, event -> Log.v(TAG, event.getProperties().toString()));
 
+        // Enable Logging upon ad completion.
+        eventEmitter.on(EventType.AD_COMPLETED, event -> Log.v(TAG, event.getProperties().toString()));
+
         // Enable logging any failed attempts to play an ad.
         eventEmitter.on(GoogleIMAEventType.DID_FAIL_TO_PLAY_AD, event -> Log.v(TAG, event.getProperties().toString()));
-
-        // Enable Logging upon ad completion.
-        eventEmitter.on(EventType.AD_COMPLETED, event -> Log.v(TAG, event.getType()));
-
-        eventEmitter.on(EventType.AD_BREAK_STARTED, event -> {
-            Log.v(TAG, event.getProperties().toString());
-            // Codec management so far is necessary only for TV platforms
-            if (brightcoveVideoView.getBrightcoveMediaController().isTvMode) {
-                if (contentPlayer != null) {
-                    previousContentPlayheadPosition = currentContentPlayheadPosition;
-                    currentContentPlayheadPosition = contentPlayer.getContentPosition();
-                    brightcoveVideoView.stopPlayback();
-                    contentPlayer.release();
-                }
-            }
-        });
 
         // Set up a listener for initializing AdsRequests. The Google
         // IMA plugin emits an ad request event as a result of
