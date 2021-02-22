@@ -61,10 +61,11 @@ public class MainActivity extends BrightcovePlayer {
                 brightcoveVideoView.start();
             }
         });
+
     }
 
     private void show_bc_speed_dialog() {
-        String[] array = {"1x", ".8x", "1.2x", "1.5x", "1.8x", "2.0x"};
+        String[] array = {"1.0x", "0.8x", "1.2x", "1.5x", "1.8x", "2.0x"};
 
         PopupMenu popupMenu = new PopupMenu(MainActivity.this, speedVideo);
         for (int i = 0; i < array.length; i++) {
@@ -86,4 +87,5 @@ public class MainActivity extends BrightcovePlayer {
         // Set playback speed label
         speedVideo.setText("Speed: " + speedLabel + "x");
     }
+
 }
