@@ -2,13 +2,18 @@ package com.brightcove.player.samples.exoplayer.basic;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 
+import com.brightcove.player.display.ExoPlayerVideoDisplayComponent;
 import com.brightcove.player.edge.Catalog;
 import com.brightcove.player.edge.VideoListener;
 import com.brightcove.player.event.EventEmitter;
 import com.brightcove.player.model.Video;
 import com.brightcove.player.view.BrightcoveExoPlayerVideoView;
 import com.brightcove.player.view.BrightcovePlayer;
+import com.google.android.exoplayer2.PlaybackParameters;
 
 /**
  * This app illustrates how to use the ExoPlayer with the Brightcove
@@ -19,6 +24,7 @@ import com.brightcove.player.view.BrightcovePlayer;
 public class MainActivity extends BrightcovePlayer {
 
     private final String TAG = this.getClass().getSimpleName();
+    private TextView speedVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,15 @@ public class MainActivity extends BrightcovePlayer {
         setContentView(R.layout.activity_main);
         brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
         super.onCreate(savedInstanceState);
+
+        speedVideo = (TextView) findViewById(R.id.speed);
+        speedVideo.setVisibility(View.VISIBLE);
+        speedVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                show_bc_speed_dialog();
+            }
+        });
 
         // Get the event emitter from the SDK and create a catalog request to fetch a video from the
         // Brightcove Edge service, given a video id, an account id and a policy key.
@@ -46,5 +61,29 @@ public class MainActivity extends BrightcovePlayer {
                 brightcoveVideoView.start();
             }
         });
+    }
+
+    private void show_bc_speed_dialog() {
+        String[] array = {"1x", ".8x", "1.2x", "1.5x", "1.8x", "2.0x"};
+
+        PopupMenu popupMenu = new PopupMenu(MainActivity.this, speedVideo);
+        for (int i = 0; i < array.length; i++) {
+            popupMenu.getMenu().add(i, i, i, array[i]);
+        }
+        popupMenu.setOnMenuItemClickListener(item -> {
+            int id = item.getItemId();
+            CharSequence itemTitle = item.getTitle();
+            float playbackSpeed = Float.parseFloat(itemTitle.subSequence(0, 3).toString());
+            changeSpeed(playbackSpeed, itemTitle.subSequence(0, 3).toString());
+            return false;
+        });
+        popupMenu.show();
+    }
+
+    private void changeSpeed(float speed, String speedLabel) {
+        // Set playback speed
+        ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay()).getExoPlayer().setPlaybackParameters(new PlaybackParameters(speed, 1.0f));
+        // Set playback speed label
+        speedVideo.setText("Speed: " + speedLabel + "x");
     }
 }
