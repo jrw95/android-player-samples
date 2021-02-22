@@ -24,7 +24,7 @@ import com.google.android.exoplayer2.PlaybackParameters;
 public class MainActivity extends BrightcovePlayer {
 
     private final String TAG = this.getClass().getSimpleName();
-    private TextView speedVideo;
+    private TextView playbackSpeed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +36,12 @@ public class MainActivity extends BrightcovePlayer {
         brightcoveVideoView = (BrightcoveExoPlayerVideoView) findViewById(R.id.brightcove_video_view);
         super.onCreate(savedInstanceState);
 
-        speedVideo = (TextView) findViewById(R.id.speed);
-        speedVideo.setVisibility(View.VISIBLE);
-        speedVideo.setOnClickListener(new View.OnClickListener() {
+        playbackSpeed = (TextView) findViewById(R.id.speed);
+        playbackSpeed.setVisibility(View.VISIBLE);
+        playbackSpeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                show_bc_speed_dialog();
+                showPlayerSpeedDialog();
             }
         });
 
@@ -64,28 +64,28 @@ public class MainActivity extends BrightcovePlayer {
 
     }
 
-    private void show_bc_speed_dialog() {
-        String[] array = {"1.0x", "0.8x", "1.2x", "1.5x", "1.8x", "2.0x"};
+    private void showPlayerSpeedDialog() {
+        String[] playerSpeedArrayLabels = {"1.0x", "0.8x", "1.2x", "1.5x", "1.8x", "2.0x"};
 
-        PopupMenu popupMenu = new PopupMenu(MainActivity.this, speedVideo);
-        for (int i = 0; i < array.length; i++) {
-            popupMenu.getMenu().add(i, i, i, array[i]);
+        PopupMenu popupMenu = new PopupMenu(MainActivity.this, playbackSpeed);
+        for (int i = 0; i < playerSpeedArrayLabels.length; i++) {
+            popupMenu.getMenu().add(i, i, i, playerSpeedArrayLabels[i]);
         }
         popupMenu.setOnMenuItemClickListener(item -> {
             int id = item.getItemId();
             CharSequence itemTitle = item.getTitle();
             float playbackSpeed = Float.parseFloat(itemTitle.subSequence(0, 3).toString());
-            changeSpeed(playbackSpeed, itemTitle.subSequence(0, 3).toString());
+            changePlayerSpeed(playbackSpeed, itemTitle.subSequence(0, 3).toString());
             return false;
         });
         popupMenu.show();
     }
 
-    private void changeSpeed(float speed, String speedLabel) {
+    private void changePlayerSpeed(float speed, String speedLabel) {
         // Set playback speed
         ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay()).getExoPlayer().setPlaybackParameters(new PlaybackParameters(speed, 1.0f));
         // Set playback speed label
-        speedVideo.setText("Speed: " + speedLabel + "x");
+        playbackSpeed.setText("Speed: " + speedLabel + "x");
     }
 
 }
