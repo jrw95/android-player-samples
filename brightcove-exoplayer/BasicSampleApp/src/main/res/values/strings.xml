@@ -20,5 +20,6 @@
     <string name="policy">BCpkADawqM1Sz511VyQhtWai5l1i0HdsbhYXWSxrlyS6JbZJECnYwuYGZuQoPvSJHsBr7HKTmLX096L3MSwqbpw3OtlZMcKQldKblD4e-UYBepkAcGiEwz98_HbifaF4S-x-Rz0K28DrfO63</string>
 
     <!-- A sample Brightcove Video ID -->
-    <string name="videoId">6220854770001</string>
+<!--    <string name="videoId">6220854770001</string>-->
+<!--    <string name="videoId">6220608951001</string>-->
 </resources>

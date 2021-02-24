@@ -45,12 +45,13 @@ public class MainActivity extends BrightcovePlayer {
 
         Intent intent = getIntent();
         String contentType = intent.getStringExtra(ContentSelection.CONTENT_TYPE);
+        String videoId = intent.getStringExtra(ContentSelection.VIDEO_ID);
         if (!TextUtils.isEmpty(contentType)) {
             if (ContentSelection.CONTENT_TYPE_VIDEO_OBJECT.equalsIgnoreCase(contentType)) {
                 loadVideoFromVideoObject();
             }
             else {
-                loadVideoFromCatalog();
+                loadVideoFromCatalog(videoId);
             }
         }
 
@@ -89,10 +90,10 @@ public class MainActivity extends BrightcovePlayer {
         playbackSpeed.setText("Speed: " + speedLabel + "x");
     }
 
-    private void loadVideoFromCatalog() {
+    private void loadVideoFromCatalog(String videoId) {
         Catalog catalog = new Catalog.Builder(eventEmitter, getString(R.string.account)).setPolicy(getString(R.string.policy)).build();
 
-        catalog.findVideoByID(getString(R.string.videoId), new VideoListener() {
+        catalog.findVideoByID(videoId, new VideoListener() {
 
             // Add the video found to the queue with add().
             // Start playback of the video with start().
