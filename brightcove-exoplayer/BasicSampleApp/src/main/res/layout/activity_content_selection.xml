@@ -28,7 +28,7 @@
             android:paddingEnd="20dp"
             android:layout_gravity="center_vertical"
             android:layout_alignParentStart="true"
-            android:text="Select Video ID" />
+            android:text="Select Video" />
 
         <Button
             android:layout_width="wrap_content"
