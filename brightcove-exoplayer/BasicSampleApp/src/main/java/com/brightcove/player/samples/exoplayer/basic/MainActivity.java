@@ -66,6 +66,10 @@ public class MainActivity extends BrightcovePlayer {
         playbackSpeed.setVisibility(View.VISIBLE);
         playbackSpeed.setOnClickListener(v -> showPlayerSpeedDialog());
 
+        eventEmitter.on(EventType.DID_SET_SOURCE, event -> {
+            ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay()).getBrightcoveDrmSession().setPropertyString("securityLevel", "L3");
+        });
+
     }
 
     private void showPlayerSpeedDialog() {
@@ -86,6 +90,7 @@ public class MainActivity extends BrightcovePlayer {
     }
 
     private void changePlayerSpeed(float speed, String speedLabel) {
+
         // Set playback speed immediately
         ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay()).getExoPlayer().setPlaybackParameters(new PlaybackParameters(speed, 1.0f));
         // Set playback speed label
