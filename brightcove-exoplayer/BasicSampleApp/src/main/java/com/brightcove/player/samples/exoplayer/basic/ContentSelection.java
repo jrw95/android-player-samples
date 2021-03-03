@@ -75,7 +75,7 @@ public class ContentSelection extends Activity {
     }
 
     private void showVideoIdDialog() {
-        String[] videoIdLabels = {"6220854770001", "6220608951001", "6234949393001"};
+        String[] videoIdLabels = {"6220854770001", "6220608951001", "6234949393001", "6236665198001"};
 
         PopupMenu videoIdPopupMenu = new PopupMenu(ContentSelection.this, videoSelector);
         for (int i = 0; i < videoIdLabels.length; i++) {
