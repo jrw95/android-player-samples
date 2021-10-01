@@ -7,6 +7,7 @@ import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,9 +36,11 @@ import com.brightcove.player.offline.MediaDownloadable;
 import com.brightcove.player.samples.offlineplaybackl3.utils.BrightcoveDownloadUtil;
 import com.brightcove.player.samples.offlineplaybackl3.utils.ViewUtil;
 import com.brightcove.player.view.BrightcovePlayer;
+import com.google.android.exoplayer2.PlaybackParameters;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -101,6 +104,10 @@ public class MainActivity extends BrightcovePlayer {
 
     private LicenseManager licenseManager;
 
+    private TextView playbackSpeed;
+    private float selectedPlayerSpeed;
+
+
     /**
      *
      */
@@ -152,12 +159,17 @@ public class MainActivity extends BrightcovePlayer {
 
         brightcoveVideoView = ViewUtil.findView(this, R.id.brightcove_video_view);
         EventEmitter eventEmitter = brightcoveVideoView.getEventEmitter();
-        catalog = new OfflineCatalog(this, eventEmitter, ACCOUNT_ID, POLICY_KEY);
+        catalog = new OfflineCatalog.Builder(this, eventEmitter, ACCOUNT_ID)
+                        .setPolicy(POLICY_KEY)
+                        .build();
 
         //Configure downloads through the catalog.
         catalog.setMobileDownloadAllowed(true);
         catalog.setMeteredDownloadAllowed(false);
         catalog.setRoamingDownloadAllowed(false);
+        Map<String, String> catalogProperties = new HashMap<>();
+        catalogProperties.put("securityLevel", "L3");
+        catalog.setCatalogProperties(catalogProperties);
 
         videoListAdapter = new VideoListAdapter(catalog, videoListListener);
 
@@ -171,10 +183,14 @@ public class MainActivity extends BrightcovePlayer {
                 android.R.layout.simple_spinner_item/*, playlistNames*/);
         playlistAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        playbackSpeed = findViewById(R.id.playerSpeed);
+        playbackSpeed.setVisibility(View.VISIBLE);
+        playbackSpeed.setOnClickListener(v -> showPlayerSpeedDialog());
+
         eventEmitter.on(EventType.DID_SET_SOURCE, event -> {
             brightcoveDrmSession = ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay()).getBrightcoveDrmSession();
             if (brightcoveDrmSession != null) {
-                brightcoveDrmSession.setPropertyString("securityLevel", "L" + OfflineCatalog.WIDEVINE_SECURITY_SOFTWARE_DECRYPTION);
+                brightcoveDrmSession.setPropertyString("securityLevel", "L3");
             }
 
             Video video = (Video) event.getProperties().get(Event.VIDEO);
@@ -186,6 +202,31 @@ public class MainActivity extends BrightcovePlayer {
 //                Log.d(TAG, "licenseManager.setPropertyString(\"securityLevel\"): " + licenseManager.getPropertyString("securityLevel"));
 //            }
         });
+    }
+
+    private void showPlayerSpeedDialog() {
+        String[] playerSpeedArrayLabels = {"1.0x", "0.8x", "1.2x", "1.3x", "1.4x", "1.5x", "1.6x", "1.7x", "1.8x", "1.9x", "2.0x"};
+
+        PopupMenu popupMenu = new PopupMenu(MainActivity.this, playbackSpeed);
+        for (int i = 0; i < playerSpeedArrayLabels.length; i++) {
+            popupMenu.getMenu().add(i, i, i, playerSpeedArrayLabels[i]);
+        }
+        popupMenu.setOnMenuItemClickListener(item -> {
+            int id = item.getItemId();
+            CharSequence itemTitle = item.getTitle();
+            selectedPlayerSpeed = Float.parseFloat(itemTitle.subSequence(0, 3).toString());
+            changePlayerSpeed(selectedPlayerSpeed, itemTitle.subSequence(0, 3).toString());
+            return false;
+        });
+        popupMenu.show();
+    }
+
+    private void changePlayerSpeed(float speed, String speedLabel) {
+
+        // Set playback speed immediately
+        ((ExoPlayerVideoDisplayComponent) brightcoveVideoView.getVideoDisplay()).getExoPlayer().setPlaybackParameters(new PlaybackParameters(speed, 1.0f));
+        // Set playback speed label
+        playbackSpeed.setText("Speed: " + speedLabel + "x");
     }
 
     private void updateVideoList() {
@@ -410,7 +451,7 @@ public class MainActivity extends BrightcovePlayer {
                     HttpRequestConfig.Builder httpRequestConfigBuilder = new HttpRequestConfig.Builder();
                     httpRequestConfigBuilder.setBrightcoveAuthorizationToken(pasToken);
                     httpRequestConfig = httpRequestConfigBuilder.build();
-                    catalog.requestPurchaseLicense(video, licenseEventListener, httpRequestConfig, OfflineCatalog.WIDEVINE_SECURITY_SOFTWARE_DECRYPTION);
+                    catalog.requestPurchaseLicense(video, licenseEventListener, httpRequestConfig);
                 }
             });
         }
@@ -557,7 +598,7 @@ public class MainActivity extends BrightcovePlayer {
                         httpRequestConfig = httpRequestConfigBuilder.build();
 
                         Log.d(TAG, "WVS expiryDate: " + expiryDate.toString());
-                        catalog.requestRentalLicense(video, expiryDate, playDuration, licenseEventListener, httpRequestConfig, OfflineCatalog.WIDEVINE_SECURITY_SOFTWARE_DECRYPTION);
+                        catalog.requestRentalLicense(video, expiryDate, playDuration, licenseEventListener, httpRequestConfig);
                     }
                 })
                 .show(getFragmentManager(), "rentalExpiryDatePicker");
