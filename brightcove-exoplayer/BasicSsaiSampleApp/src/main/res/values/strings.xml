@@ -1,7 +1,34 @@
 <resources>
     <string name="app_name">BasicSsaiSampleApp</string>
 
-    <string name="sdk_demo_account">5420904993001</string>
-    <string name="sdk_demo_policy_key">BCpkADawqM3DwCTPGyMMiG0loem8lXox3utO1lFEP1i-_l1MpjRSVXMTSsa2ToslC129_W6YzwJpXbpbIVRFwf35qYM0pxo2HJK-_SotgmgrkmJTQ-024GkXIelVSY8LOHZzRBtcBU57M6Is</string>
-    <string name="video_id">6031901107001</string>
+    <!-- DEFAULT ACCOUNT SETTINGS -->
+<!--    <string name="sdk_demo_account">5420904993001</string>-->
+<!--    <string name="sdk_demo_policy_key">BCpkADawqM3DwCTPGyMMiG0loem8lXox3utO1lFEP1i-_l1MpjRSVXMTSsa2ToslC129_W6YzwJpXbpbIVRFwf35qYM0pxo2HJK-_SotgmgrkmJTQ-024GkXIelVSY8LOHZzRBtcBU57M6Is</string>-->
+<!--    <string name="video_id">6031901107001</string>-->
+
+    <!--  HDCP/GSC Testing  -->
+<!--    <string name="sdk_demo_account">3537782565001</string>-->
+<!--    <string name="sdk_demo_policy_key">BCpkADawqM2dpAv9Lt3u1aJvyTfOakbUMrapUvs5FOg3kvjBDbGbVnNu1SUhv4-FA_BukxFn1mhdMkqMgbyZ4GglLf6itQDVxtzPLZIyZVYDR7rlkdEQwB9LwgNAVk7MO4fT9lK8nZLqPkpe</string>-->
+<!--    <string name="video_id">hdcp_11_08_2021</string>-->
+
+    <!--  BC-54907  -->
+<!--    <string name="sdk_demo_account">3737230870001</string>-->
+<!--    <string name="sdk_demo_policy_key">BCpkADawqM0MHaVu8t5DMNRXm9zl6cm7UscP4aMEP_kxRngzYV7caKqGyZJw8VXZWSj_uJ1-ql0vRgcPtrnM3iLgU1wW7MmAMunNb0jsOEyyPTVbpCsoZOxuSO6nWYjG38XwX-cIc0cj2MpO</string>-->
+<!--    <string name="video_id">6282007733001</string>-->
+
+    <!--  GSC Clear Testing  -->
+    <string name="sdk_demo_account">4800266849001</string>
+    <string name="policy">BCpkADawqM3n0ImwKortQqSZCgJMcyVbb8lJVwt0z16UD0a_h8MpEYcHyKbM8CGOPxBRp0nfSVdfokXBrUu3Sso7Nujv3dnLo0JxC_lNXCl88O7NJ0PR0z2AprnJ_Lwnq7nTcy1GBUrQPr5e</string>
+    <string name="video_id">dynamic_origin_clear_honey_bees_uhd</string>
+<!--    <string name="playbackRight">3b3b1eba-7605-4bae-a503-e158b387aec6</string>-->
+
+    <!--  GSC DRM Testing  -->
+<!--    <string name="sdk_demo_account">3636334164001</string>-->
+<!--    <string name="policy">BCpkADawqM04pilWqSIDfTmwPNiBscekcQB9wQ3IiTUZ4baBIx6LyLTrACuS0KJPOlpeEui10NOSgQ8zPTk8iSRPkQXSCGBrEqJD_4vJtX31zRvnk-4Wq8svz8j6abVYnqTijMliCf_1lIoa</string>-->
+<!--    <string name="video_id">bolt_fp_wv_tbbt_S10_E05</string>-->
+<!--    <string name="video_id">redpoll_drm_30s_multi_audio_3_lang_en_es_ja</string>-->
+
+    <!--  GSC HLSe Testing  -->
+<!--    <string name="sdk_demo_account">5507778763001</string>-->
+<!--    <string name="video_id">epa_DwiOSSDK_10_storyboard</string>-->
 </resources>

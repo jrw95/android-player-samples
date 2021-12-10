@@ -5,12 +5,31 @@
     <string name="app_name">ExoPlayer Sample App</string>
 
     <!-- A sample Brightcove Edge Account ID -->
-    <string name="account">3636334163001</string>
+<!--    <string name="account">3636334163001</string>-->
 
     <!-- A sample Brightcove Edge Policy Key -->
-    <string name="policy">BCpkADawqM1W-vUOMe6RSA3pA6Vw-VWUNn5rL0lzQabvrI63-VjS93gVUugDlmBpHIxP16X8TSe5LSKM415UHeMBmxl7pqcwVY_AZ4yKFwIpZPvXE34TpXEYYcmulxJQAOvHbv2dpfq-S_cm</string>
+<!--    <string name="policy">BCpkADawqM1W-vUOMe6RSA3pA6Vw-VWUNn5rL0lzQabvrI63-VjS93gVUugDlmBpHIxP16X8TSe5LSKM415UHeMBmxl7pqcwVY_AZ4yKFwIpZPvXE34TpXEYYcmulxJQAOvHbv2dpfq-S_cm</string>-->
 
     <!-- A sample Brightcove Video ID -->
-    <string name="videoId">3637773814001</string>
+<!--    <string name="videoId">3637773814001</string>-->
+<!--    <string name="account">3537782565001</string>-->
+<!--    <string name="policy">BCpkADawqM2dpAv9Lt3u1aJvyTfOakbUMrapUvs5FOg3kvjBDbGbVnNu1SUhv4-FA_BukxFn1mhdMkqMgbyZ4GglLf6itQDVxtzPLZIyZVYDR7rlkdEQwB9LwgNAVk7MO4fT9lK8nZLqPkpe</string>-->
+<!--    <string name="videoId">6280944147001</string>-->
+    <!-- Brave Trailer -->
+<!--    <string name="videoId">70706045961202</string>-->
+
+    <!-- GSC Clear Testing -->
+<!--    <string name="account">4800266849001</string>-->
+<!--    <string name="videoRefId">dynamic_origin_clear_honey_bees_uhd</string>-->
+<!--    <string name="playbackRight">3b3b1eba-7605-4bae-a503-e158b387aec6</string>-->
+
+    <!-- GSC DRM Testing -->
+    <string name="account">3636334164001</string>
+    <string name="policy">BCpkADawqM04pilWqSIDfTmwPNiBscekcQB9wQ3IiTUZ4baBIx6LyLTrACuS0KJPOlpeEui10NOSgQ8zPTk8iSRPkQXSCGBrEqJD_4vJtX31zRvnk-4Wq8svz8j6abVYnqTijMliCf_1lIoa</string>
+    <string name="videoRefId">bolt_fp_wv_tbbt_S10_E05</string>
+
+    <!-- GSC HLSe Testing -->
+<!--    <string name="account">5507778763001</string>-->
+<!--    <string name="videoRefId">epa_DwiOSSDK_10_storyboard</string>-->
 
 </resources>

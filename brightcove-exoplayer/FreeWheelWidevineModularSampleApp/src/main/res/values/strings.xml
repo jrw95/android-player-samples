@@ -3,4 +3,11 @@
 
     <string name="app_name">FreeWheel Widevine Modular Sample App</string>
 
+<!--    <string name="account">3537782565001</string>-->
+<!--    <string name="policy">BCpkADawqM2dpAv9Lt3u1aJvyTfOakbUMrapUvs5FOg3kvjBDbGbVnNu1SUhv4-FA_BukxFn1mhdMkqMgbyZ4GglLf6itQDVxtzPLZIyZVYDR7rlkdEQwB9LwgNAVk7MO4fT9lK8nZLqPkpe</string>-->
+<!--    <string name="videoId">6280944147001</string>-->
+    <string name="account">3636334164001</string>
+    <string name="policy">BCpkADawqM04pilWqSIDfTmwPNiBscekcQB9wQ3IiTUZ4baBIx6LyLTrACuS0KJPOlpeEui10NOSgQ8zPTk8iSRPkQXSCGBrEqJD_4vJtX31zRvnk-4Wq8svz8j6abVYnqTijMliCf_1lIoa</string>
+    <!-- Brave Trailer -->
+    <string name="videoId">5491252002001</string>
 </resources>

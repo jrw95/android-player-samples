@@ -2,5 +2,10 @@
 <resources>
 
     <string name="app_name">AppCompat Fragment Sample App</string>
+    <!-- GSC Clear Testing -->
+        <string name="account">4800266849001</string>
+<!--        <string name="videoRefId">dynamic_origin_clear_honey_bees_uhd</string>-->
+        <string name="videoRefId">dynamic_origin_expanse_s01_e05</string>
+    <!--    <string name="playbackRight">3b3b1eba-7605-4bae-a503-e158b387aec6</string>-->
 
 </resources>

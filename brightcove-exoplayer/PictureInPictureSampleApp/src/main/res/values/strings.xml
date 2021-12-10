@@ -2,13 +2,19 @@
     <string name="app_name">PictureInPictureSampleApp</string>
 
     <!-- A sample Brightcove Edge Account ID -->
-    <string name="account">5420904993001</string>
-
+<!--    <string name="account">5420904993001</string>-->
     <!-- A sample Brightcove Edge Policy Key -->
-    <string name="policy">BCpkADawqM1RJu5c_I13hBUAi4c8QNWO5QN2yrd_OgDjTCVsbILeGDxbYy6xhZESTFi68MiSUHzMbQbuLV3q-gvZkJFpym1qYbEwogOqKCXK622KNLPF92tX8AY9a1cVVYCgxSPN12pPAuIM</string>
-
+<!--    <string name="policy">BCpkADawqM1RJu5c_I13hBUAi4c8QNWO5QN2yrd_OgDjTCVsbILeGDxbYy6xhZESTFi68MiSUHzMbQbuLV3q-gvZkJFpym1qYbEwogOqKCXK622KNLPF92tX8AY9a1cVVYCgxSPN12pPAuIM</string>-->
     <!-- A sample Brightcove Video ID -->
-    <string name="videoId">5733185764001</string>
+<!--    <string name="videoId">5733185764001</string>-->
+
+    <!-- A sample Brightcove Edge Account ID -->
+    <string name="account">4800266849001</string>
+    <!-- A sample Brightcove Edge Policy Key -->
+    <string name="policy">BCpkADawqM04pilWqSIDfTmwPNiBscekcQB9wQ3IiTUZ4baBIx6LyLTrACuS0KJPOlpeEui10NOSgQ8zPTk8iSRPkQXSCGBrEqJD_4vJtX31zRvnk-4Wq8svz8j6abVYnqTijMliCf_1lIoa</string>
+    <!-- A sample Brightcove Video ID -->
+<!--    <string name="videoRefId">bolt_fp_wv_tbbt_S10_E05</string>-->
+    <string name="videoRefId">dynamic_origin_clear_honey_bees_uhd</string>
 
     <string name="enter_picture_in_picture">ENTER PICTURE IN PICTURE MODE</string>
     <string name="configure_picture_in_picture">CONFIGURE PICTURE IN PICTURE</string>

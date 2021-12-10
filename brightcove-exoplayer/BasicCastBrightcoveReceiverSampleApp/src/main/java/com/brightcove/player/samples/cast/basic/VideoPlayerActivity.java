@@ -104,6 +104,7 @@ public class VideoPlayerActivity extends BrightcovePlayerActivity {
                 .setAdConfigId(adConfigId)
                 // Set your Analytics application ID here
                 .setApplicationId(PROPERTY_APPLICATION_ID)
+                .setTveToken(TVEToken.TVE_TOKEN)
                 .build();
 
         GoogleCastComponent googleCastComponent = new GoogleCastComponent.Builder(eventEmitter, this)
